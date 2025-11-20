@@ -3228,6 +3228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393414465}
   - component: {fileID: 1393414466}
+  - component: {fileID: 1393414467}
   m_Layer: 0
   m_Name: mario_and_items_0
   m_TagString: Untagged
@@ -3244,7 +3245,7 @@ Transform:
   m_GameObject: {fileID: 1393414464}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.85, y: -0.763, z: 4.067752}
+  m_LocalPosition: {x: -2.85, y: -0.477, z: 4.067752}
   m_LocalScale: {x: 2.2809825, y: 2.2809825, z: 2.2809825}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3302,6 +3303,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!54 &1393414467
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393414464}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1485484844
 GameObject:
   m_ObjectHideFlags: 0

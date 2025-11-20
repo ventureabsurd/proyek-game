@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public bool running => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.25f;
     public bool sliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
     public bool falling => velocity.y < 0f && !grounded;
+    public CoinManager cm;
 
     private void Awake()
     {
@@ -52,7 +53,8 @@ public class PlayerMovement : MonoBehaviour
 
         grounded = rb.Raycast(Vector2.down);
 
-        if (grounded) {
+        if (grounded)
+        {
             GroundedMovement();
         }
 
@@ -68,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         // Clamp within the screen bounds
         Vector2 leftEdge = mainCamera.ScreenToWorldPoint(Vector2.zero);
         Vector2 rightEdge = mainCamera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        position.x = Mathf.Clamp(position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
+        // position.x = Mathf.Clamp(position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
 
         rb.MovePosition(position);
     }
@@ -80,14 +82,18 @@ public class PlayerMovement : MonoBehaviour
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
 
         // Check if running into a wall
-        if (rb.Raycast(Vector2.right * velocity.x)) {
+        if (rb.Raycast(Vector2.right * velocity.x))
+        {
             velocity.x = 0f;
         }
 
         // Flip sprite to face direction
-        if (velocity.x > 0f) {
+        if (velocity.x > 0f)
+        {
             transform.eulerAngles = Vector3.zero;
-        } else if (velocity.x < 0f) {
+        }
+        else if (velocity.x < 0f)
+        {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
     }
@@ -131,9 +137,19 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.gameObject.layer != LayerMask.NameToLayer("PowerUp"))
         {
             // Stop vertical movement if mario bonks his head
-            if (transform.DotTest(collision.transform, Vector2.up)) {
+            if (transform.DotTest(collision.transform, Vector2.up))
+            {
                 velocity.y = 0f;
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            cm.coinCount++;
         }
     }
 
